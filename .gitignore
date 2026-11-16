@@ -1,0 +1,50 @@
+# Credentials and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+/credentials/
+/secrets/
+/.aws/
+
+# Local agent and editor state
+/.agents/
+/.codex/
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Temporary files, caches, and logs
+/.cache/
+/tmp/
+/temp/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+node_modules/
+*.log
+*.tmp
+
+# Private runtime state: use synthetic, explicitly reviewed fixtures elsewhere
+/local/
+/runtime/
+/data/
+/conversations/
+/logs/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*

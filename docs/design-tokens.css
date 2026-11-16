@@ -1,0 +1,24 @@
+/* Warm Glass: approved GeoSpace light palette, 2026-11-16.
+ * Design reference only; no application or framework is selected.
+ * Apply this class to a future GeoSpace root, not to the host application.
+ */
+.geospace-theme {
+  --gs-canvas: #F4F0EA;
+  --gs-surface: #FFFDF9;
+  --gs-text: #2B2B2B;
+  --gs-text-secondary: #746C60;
+  --gs-primary: #C4422E;
+  --gs-on-primary: #FFFFFF;
+  --gs-spatial-accent: #526653;
+  --gs-border-decorative: #D6D0C2;
+  --gs-border-interactive: var(--gs-text-secondary);
+  --gs-focus: var(--gs-text);
+
+  /* Use primary text on glass; secondary text requires an opaque surface.
+   * Validate the actual backdrop before shipping any translucent component.
+   * Use the opaque surface when backdrop blur is unavailable or unsuitable.
+   */
+  --gs-glass-surface: rgba(255, 253, 249, 0.72);
+  --gs-glass-border: rgba(255, 255, 255, 0.75);
+  --gs-glass-blur: 25px;
+}
