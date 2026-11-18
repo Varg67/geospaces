@@ -2,8 +2,8 @@
 
 TypeScript core of the GeoSpace Weak simulation engine. Behavior follows the
 [Weak engine rules](../docs/architecture/engine-weak-rules.md). The package is a
-scaffold: it holds the module boundaries, shared primitives, ports and the
-accepted contracts. **No mechanic logic is implemented yet.**
+staged build: stage 1 (`world`) is implemented and unit-tested; the other
+mechanics hold only their accepted contracts.
 
 ## Requirements
 
@@ -40,7 +40,7 @@ src/
   ports/       Clock, RandomSource, EventLog interfaces
     memory/    ManualClock, SeededRandom, InMemoryEventLog for tests and experiments
   mechanics/   One folder per mechanic, each a separately testable stage
-    world/        Stage 1: places, hierarchy, access edges, validation, shortest paths
+    world/        Stage 1 (implemented): places, hierarchy, access edges, validation, shortest paths
     travel/       Stage 2: per-mode durations, district profiles, waits, transit lines
     journey/      Stage 3: itinerary planning, position from the clock, interruption
     commitments/  Stage 4: latest departure time, late/missed/declined outcomes

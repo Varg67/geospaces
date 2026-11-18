@@ -9,8 +9,8 @@ It is the canonical location for engine behavior decisions. The
 > the user in a design review held on 2026-11-17 and 2026-11-18
 > (America/Sao_Paulo). Sections marked **Proposed** await approval. Sections
 > marked **Open** have not been discussed. The [engine package](../../engine/README.md)
-> holds only the scaffold and the accepted contracts; **no rule in this document
-> is implemented or verified yet.**
+> implements stage 1 (world graph) with unit tests; **the other rules are not
+> implemented or verified yet.**
 
 ## 0. Scope and principles — Accepted
 
@@ -189,6 +189,18 @@ interface Leg {
 | `REMOTE_WAITING` | One person reached the meeting point and waits for the other |
 | `REMOTE_ONLY` | Different places or separate journeys |
 | `PASSED_BY` (event) | Brief encounter when crossing an occupied room |
+
+## Stage 1 — World graph — Accepted
+
+Implemented in [`engine/src/mechanics/world`](../../engine/src/mechanics/world).
+
+| # | Rule |
+| --- | --- |
+| W1 | **Access edges are two-way by default.** An optional `oneWay` flag restricts an edge to `from` → `to`. Mixed cases (one-way for cars, two-way on foot) use **parallel edges** with different modes. Parallel edges sharing a mode raise a duplicate warning. |
+| W2 | **Weak place kinds:** `world → district → urban → interior`; interiors may nest. **An urban place is its own entrance**: rooms connect to it. **Districts carry a morphology profile** (`centre`, `historic_centre`, `inner_ring`, `periphery`, `informal_settlement`, `old_suburb`, `modern_suburb`, `outlying_district`). Places have an optional **category** from the icon catalog. Larger scales (country, state, city) are deferred to Mid. |
+| W3 | **Validation errors:** one `world` root; each kind only inside its allowed parent kinds; edges and proximity only between urban or interior places; an edge touching a room stays inside one building or reaches that building's entrance; interior edges allow only `walk` and `run`; every room is reachable on foot from its entrance **and can walk back**; lengths are positive whole metres. |
+| W4 | **Deterministic routes:** shortest path by length over edges allowing a requested mode; ties go to the lexicographically smaller sequence of place ids, then the smaller edge id. |
+| — | **Warnings** (the world still builds): likely duplicate edges, and a direct edge more than 1.5× longer than an alternative route for the same mode (rule D6). |
 
 ## 5. Provisional places and merge — Proposed
 

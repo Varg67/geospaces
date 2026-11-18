@@ -76,7 +76,7 @@ Kindroid behavior remain outside the verified scope.
 | `docs/context/` | Supplied research and its provenance |
 | `docs/plans/` | Original phase plans, implementation plans, and pending sources |
 | `docs/reviews/frontend/` | Frontend review reports and verification evidence |
-| `engine/` | Weak simulation engine scaffold: staged mechanic modules, ports and the Node 22 bundle |
+| `engine/` | Weak simulation engine: staged mechanic modules (stage 1 world graph implemented), ports and the Node 22 bundle |
 | `frontend/` | Weak observer, build and test tooling, and fictional fixtures |
 | `icons/` | Temporary English taxonomy and semiotic icon catalog (`urban_places`, `interior_rooms`, and custom SVGs) |
 | `.gitignore` | Exclusions for secrets, caches, temporary files, and local data |

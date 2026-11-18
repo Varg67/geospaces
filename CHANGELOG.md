@@ -5,6 +5,10 @@ release entry should include its date, Git tag and verification scope.
 
 ## Unreleased
 
+- Implement engine stage 1, the world graph: place hierarchy with allowed
+  parent kinds, two-way and one-way access edges, proximity, structural and
+  interior-reachability validation, warnings, and deterministic shortest paths.
+
 - Add the `engine/` TypeScript scaffold: kernel primitives, ports with in-memory
   implementations, staged mechanic modules with the accepted contracts, an
   architecture boundary test, and a single-file Node 22 bundle with a smoke test.

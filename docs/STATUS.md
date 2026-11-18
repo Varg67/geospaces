@@ -64,8 +64,10 @@ Updated: 2026-11-18 (America/Sao_Paulo).
   Database, deployment model, and detailed engine/platform communication
   contracts remain under discussion. The [`engine/`](../engine/README.md)
   package holds a staged, modular scaffold (kernel, ports and accepted
-  contracts) delivered as a single Node 22 bundle; no mechanic or platform
-  adapter is implemented. Frontend fixtures must remain explicitly fictional.
+  contracts) delivered as a single Node 22 bundle. Stage 1 (world graph:
+  hierarchy, access edges, proximity, validation, deterministic shortest
+  paths) is implemented with unit tests; other mechanics and the platform
+  adapter are not implemented. Frontend fixtures must remain explicitly fictional.
 - The supplied material provides no evidence of authenticated Kindroid integration
   or real Kindroid tests. Static guide/client research is not runtime validation.
 - Engine implementation and Kindroid integration require a later task.

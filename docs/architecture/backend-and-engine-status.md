@@ -2,7 +2,7 @@
 
 This document summarizes the **current state, architectural boundaries, unapproved proposals, and open decisions** for the GeoSpace backend, simulation engine, persistence layer, and Kindroid Apps integration.
 
-> **Critical distinction:** **No backend, simulation mechanic, database, or Kindroid adapter is implemented in this repository.** The [`engine/`](../../engine/README.md) package contains only a scaffold: module boundaries, shared primitives, ports with in-memory test implementations, and the accepted contracts. Everything in this area exists only as requirements, invariants, accepted rules ([`engine-weak-rules.md`](engine-weak-rules.md)), proposals ([`01_GeoSpace_Weak.md`](../plans/01_GeoSpace_Weak.md)), and static platform research ([`Kindroid_Apps_GeoSpace_Contexto_Codex.md`](../context/Kindroid_Apps_GeoSpace_Contexto_Codex.md)).
+> **Critical distinction:** **No backend, simulation mechanic, database, or Kindroid adapter is implemented in this repository.** The [`engine/`](../../engine/README.md) package contains module boundaries, shared primitives, ports with in-memory test implementations, the accepted contracts, and stage 1 (world graph) with unit tests. Everything in this area exists only as requirements, invariants, accepted rules ([`engine-weak-rules.md`](engine-weak-rules.md)), proposals ([`01_GeoSpace_Weak.md`](../plans/01_GeoSpace_Weak.md)), and static platform research ([`Kindroid_Apps_GeoSpace_Contexto_Codex.md`](../context/Kindroid_Apps_GeoSpace_Contexto_Codex.md)).
 
 ## 1. Architectural Invariants (Accepted Constraints)
 
