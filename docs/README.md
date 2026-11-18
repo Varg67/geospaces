@@ -1,18 +1,49 @@
 # Documentation index
 
-## Canonical locations
+## Start here
 
 | Document | Role and authority |
 | --- | --- |
 | [Project overview](../README.md) | Purpose, organization, and entry point |
 | [Agent guidance](../AGENTS.md) | Contribution rules |
+| [Claude onboarding](../CLAUDE.md) | Project summary and collaboration rules for Claude |
 | [Current status](STATUS.md) | Updatable summary of current work and pending decisions |
+
+## Architecture and design
+
+| Document | Role and authority |
+| --- | --- |
+| [Frontend technical guide](architecture/frontend-technical-guide.md) | Implemented React/TypeScript/Vite frontend architecture, contracts, and rendering pipeline |
+| [Backend & engine status](architecture/backend-and-engine-status.md) | Engine boundaries, unapproved proposals, Kindroid research status, and open choices |
 | [Design Blueprint](DESIGN.md) | Accepted Warm Glass art direction, evidence, validation, and open visual decisions |
-| [Design tokens](design-tokens.css) | Canonical approved light palette and initial material values; no application implementation |
-| [Context inventory](context/README.md) | Research provenance and interpretation limits |
-| [Kindroid Apps research context](context/Kindroid_Apps_GeoSpace_Contexto_Codex.md) | Original supplied research; not a specification or runtime verification |
+| [Design tokens](design-tokens.css) | Canonical approved light palette and material values imported by the frontend |
+| [Spatial taxonomy & icon catalog](../icons/README.md) | Temporary English catalog of 341 point-level urban places, 248 interior rooms, standard icon bindings, and 48 custom semiotic SVGs |
+
+## Plans
+
+| Document | Role and authority |
+| --- | --- |
+| [Frontend implementation plan](plans/frontend-implementation.md) | Approved 26-part plan, team responsibilities, checkpoint gates, and execution status |
+| [Spatial network correction](plans/spatial-network-correction.md) | User-confirmed proximity/access distinction, network fixture correction, and acceptance evidence |
 | [Plan inventory](plans/README.md) | Available originals and missing phase plans |
-| [GeoSpace Weak original plan](plans/01_GeoSpace_Weak.md) | Original proposal v0.1; not an approved implementation architecture |
+| [GeoSpace Weak original plan](plans/01_GeoSpace_Weak.md) | Original proposal v0.1 |
+
+## Frontend reviews
+
+| Document | Role and authority |
+| --- | --- |
+| [Frontend Block 1 review](reviews/frontend/frontend-block-1-review.md) | Executed checks, corrected findings, rendered evidence, limitations, and pending user checkpoint |
+| [Frontend Block 2 review](reviews/frontend/frontend-block-2-review.md) | Character/place consultation, brand-scroll fix, asynchronous states, and executed review evidence |
+| [Frontend Block 3 review](reviews/frontend/frontend-block-3-review.md) | District Network layers, authored geometry, presence, map/list equivalence, checks, and readability limits |
+| [Frontend Block 4 review](reviews/frontend/frontend-block-4-review.md) | Explicit interior exploration, ancestor navigation, per-level camera state, edge cases, and executed checkpoint evidence |
+| [Frontend Block 5 review](reviews/frontend/frontend-block-5-review.md) | Icon integration, accessibility review, cross-browser regression, and final frontend handoff evidence |
+
+## Research context
+
+| Document | Role and authority |
+| --- | --- |
+| [Context inventory](context/README.md) | Research provenance and interpretation limits |
+| [Kindroid Apps research context](context/Kindroid_Apps_GeoSpace_Contexto_Codex.md) | Original supplied research and proposed experiments |
 
 Each document has one canonical location. The supplied root-level references were
 relocated into the directories above without changing their contents. Newly

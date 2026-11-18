@@ -1,6 +1,6 @@
 /* Warm Glass: approved GeoSpace light palette, 2026-11-16.
- * Design reference only; no application or framework is selected.
- * Apply this class to a future GeoSpace root, not to the host application.
+ * Canonical values imported by the Weak frontend.
+ * Scope this class to the GeoSpace root, not to the host application.
  */
 .geospace-theme {
   --gs-canvas: #F4F0EA;

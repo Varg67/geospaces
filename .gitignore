@@ -2,17 +2,32 @@
 .env
 .env.*
 !.env.example
+.envrc
+.netrc
+_netrc
+.npmrc
+.pypirc
 *.pem
 *.key
 *.p12
 *.pfx
-/credentials/
-/secrets/
-/.aws/
+*.ppk
+*.jks
+*.keystore
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+credentials/
+secrets/
+.aws/
+.ssh/
 
 # Local agent and editor state
 /.agents/
 /.codex/
+/.claude/settings.local.json
+/.claude/.credentials.json
 /.idea/
 /.vscode/
 *.swp

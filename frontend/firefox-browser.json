@@ -1,0 +1,10 @@
+{
+  "revision": "1575",
+  "browserVersion": "159.0",
+  "platform": "debian13-x64",
+  "url": "https://cdn.playwright.dev/dbazure/download/playwright/builds/firefox/1575/firefox-debian-13.zip",
+  "sha256": "e9fd366688ca0cb84e0eadb2f2a6dbd415a473929607c58981563d8aae3e25ef",
+  "sourceCommit": "8fd981fea266ee59586ebdac76bbc0ce853cdffc",
+  "upstreamIssue": "https://github.com/microsoft/playwright/issues/44135",
+  "integrityNote": "SHA256 recorded from the first official HTTPS download; not a publisher-signed checksum."
+}

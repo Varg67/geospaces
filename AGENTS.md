@@ -5,8 +5,9 @@
   verification. Original plans and research are proposals, not architecture approval.
 - Keep the GeoSpace core independent of Kindroid-specific behavior.
 - Preserve pre-existing changes and limit work to the requested scope.
-- Organize code by responsibility as concrete needs arise. No language, framework,
-  database, or architecture has been approved.
+- Organize code by responsibility as concrete needs arise. The frontend uses the
+  approved React/TypeScript/Vite plan in `docs/plans/frontend-implementation.md`.
+  Engine language, database, and platform integration architecture remain open.
 - Keep documentation consistent with effective changes and maintain one canonical
   location per document.
 - Record checks actually performed and their limitations; never imply unexecuted
