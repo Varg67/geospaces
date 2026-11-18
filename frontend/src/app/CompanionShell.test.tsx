@@ -1,9 +1,11 @@
-import { render, screen, within } from "@testing-library/react";
+import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { CompanionShell } from "./CompanionShell";
 import { WorldViewProvider } from "./view/WorldViewProvider";
 import { createFixtureReader } from "../data/fixtureReader";
+import { exampleWorld } from "../data/exampleWorld";
+import type { WorldReader, WorldSnapshot } from "../domain/world";
 import { App } from "./App";
 
 describe("observation interface", () => {
@@ -98,16 +100,29 @@ describe("observation interface", () => {
   });
   it("loads, reports failure, and recovers after retry", async () => {
     const user = userEvent.setup();
-    render(<App reader={createFixtureReader("error", 10)} />);
+    const requests: {
+      resolve: (snapshot: WorldSnapshot) => void;
+      reject: (reason: Error) => void;
+    }[] = [];
+    const reader: WorldReader = {
+      loadSnapshot() {
+        return new Promise((resolve, reject) =>
+          requests.push({ resolve, reject }),
+        );
+      },
+    };
+    render(<App reader={reader} />);
     expect(screen.getByRole("status")).toHaveTextContent("Loading");
-    expect(await screen.findByRole("alert")).toHaveTextContent(
+    await act(async () =>
+      requests[0]!.reject(new Error("Example data is unavailable")),
+    );
+    expect(screen.getByRole("alert")).toHaveTextContent(
       "Example data is unavailable",
     );
     await user.click(screen.getByRole("button", { name: "Try again" }));
     expect(screen.getByRole("status")).toHaveTextContent("Loading");
-    expect(
-      await screen.findByRole("heading", { name: "Alder Grove" }),
-    ).toBeVisible();
+    await act(async () => requests[1]!.resolve(exampleWorld));
+    expect(screen.getByRole("heading", { name: "Alder Grove" })).toBeVisible();
   });
   it("shows the empty state and keeps its workspace target available", async () => {
     render(<App reader={createFixtureReader("empty", 0)} />);
