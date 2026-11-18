@@ -7,45 +7,71 @@ The GeoSpace core must remain independent of Kindroid-specific behavior.
 
 ## Current stage
 
-The initial focus is **GeoSpace Weak**. The user approved a 26-part frontend plan
-using React, TypeScript, Vite, and authored SVG presentation in a local desktop
-browser. The first review block (parts 1–5) was reviewed by the user; the
-consultation block (parts 6–10) and the reported brand-click scroll fix are
-implemented and accepted by the user. The District Network rendering block
-(parts 11–16) is implemented and accepted. The exploration/camera block
-(parts 17–21) is implemented, verified, and accepted by the user. The final block
-(parts 22–26: icons, accessibility, regression, and handoff) is implemented and
-verified technically. During final review, the user identified that the urban
-example is a sequential circuit and confirmed that proximity and access must
-be separate. The [spatial network correction](docs/plans/spatial-network-correction.md)
-is in progress; final acceptance remains pending. See the
-[final checkpoint evidence](docs/reviews/frontend/frontend-block-5-review.md). Engine language,
-database, deployment, and integration architecture remain undecided.
-Engine implementation and Kindroid integration are deferred.
+**GeoSpace Weak** is the current focus. The local, read-only frontend displays
+fictional character locations, journeys and events. It supports map and list
+inspection, explicit interior exploration, ancestor navigation and per-level
+camera state. The current checkout includes separate Nearby and Access layers
+as part of the [spatial network correction](docs/plans/spatial-network-correction.md),
+which is pending final user review.
 
-The supplied research reports no authenticated Kindroid integration or real
-Kindroid tests. Proposed platform capabilities and experiments are not verified
-runtime behavior. Read [current status](docs/STATUS.md) before starting work.
+The simulation engine, persistence and Kindroid adapter are future work. Engine
+language, storage and deployment are open, and the supplied Kindroid research
+contains no authenticated runtime tests. See [current status](docs/STATUS.md)
+for the 26-part frontend checkpoint history, and [the roadmap](docs/ROADMAP.md)
+for the next steps.
+
+## Run locally
+
+Use Node.js 24 and npm. With nvm, run `nvm install` and `nvm use` from
+`frontend/` to select the version specified in its `.nvmrc`. The project
+requires the full checkout because the frontend reads the shared design tokens
+and icon catalog.
+
+```sh
+cd frontend
+npm ci
+npm run dev
+```
+
+Open the localhost address printed by Vite. No service credentials or database
+are required for the fictional fixtures.
+
+## Verify
+
+From `frontend/`, run:
+
+```sh
+npm run typecheck
+npm run lint
+npm test
+npm run build
+```
+
+See the [frontend guide](frontend/README.md#verify) for Chromium and pinned
+Firefox setup, browser tests and example URLs. The Firefox installer supports
+Debian 13 x64. Native browser zoom, screen-reader behavior and authenticated
+Kindroid behavior remain outside the verified scope.
 
 ## Start here
 
 1. Read this file and [current status](docs/STATUS.md).
-2. Follow [agent guidance](AGENTS.md).
+2. Follow [contribution guidance](CONTRIBUTING.md) and [agent guidance](AGENTS.md).
 3. Use the [documentation index](docs/README.md) to locate source material.
 
 ## Organization and responsibilities
 
 | Path | Responsibility |
 | --- | --- |
-| `README.md` | Project purpose, entry point, and repository organization |
-| `AGENTS.md` | Working rules for future contributors and agents |
+| `ARCHITECTURE.md` | Component boundaries and data flow |
+| `CONTRIBUTING.md`, `AGENTS.md` | Shared contribution guidance and agent rules |
+| `CHANGELOG.md` | Recorded baseline and unreleased changes |
 | `docs/README.md` | Canonical document index and evidence conventions |
 | `docs/STATUS.md` | Current state, open work, and next step |
 | `docs/architecture/` | Technical guides for the frontend and engine boundaries |
 | `docs/context/` | Supplied research and its provenance |
 | `docs/plans/` | Original phase plans, implementation plans, and pending sources |
 | `docs/reviews/frontend/` | Frontend review reports and verification evidence |
-| `frontend/` | Approved Weak frontend implementation, built in reviewed blocks |
+| `frontend/` | Weak observer, build and test tooling, and fictional fixtures |
 | `icons/` | Temporary English taxonomy and semiotic icon catalog (`urban_places`, `interior_rooms`, and custom SVGs) |
 | `.gitignore` | Exclusions for secrets, caches, temporary files, and local data |
 | `.editorconfig` | Basic text formatting conventions |
@@ -56,18 +82,7 @@ and exact contents to preserve provenance; they are explicitly identified in the
 documentation index. Maintain one canonical location per document and use Git for
 revisions rather than filenames such as `final2`.
 
-## Code and tests
-
-Frontend code and checks are introduced through the
-[approved implementation plan](docs/plans/frontend-implementation.md).
-See [frontend instructions](frontend/README.md) for running the foundation and
-its checks with Node 24.
-Organize code by actual responsibility as needs emerge. Future work must distinguish the
-independent simulation core from platform-specific adapters; this boundary does
-not select engine storage technology or platform integration architecture.
-
 ## Next step
 
-Complete and review the spatial network correction with the user.
-Core communication contracts and minimum experiments remain
-separate open work. See [current progress](docs/STATUS.md).
+Review the spatial network correction with the user. Core communication
+contracts and minimum experiments remain separate open work.

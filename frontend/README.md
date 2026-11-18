@@ -95,13 +95,6 @@ Ana at Home without assigning a room. Access checks hide descendants of closed
 ancestors, and snapshot reconciliation removes inaccessible cached views.
 These fixtures exercise presentation boundaries, not an authorization backend.
 
-For this session the isolated Node 24 runtime is
-`/tmp/geospace-node24/node_modules/node/bin/node`; prefix commands with
-`PATH=/tmp/geospace-node24/node_modules/node/bin:$PATH`. This temporary path
-may disappear after the environment resets; `.nvmrc` remains the portable setup.
-The local npm cache is `/tmp/geospace-npm-cache`. No system Node changes are
-required.
-
 ## Canonical icons and distribution (Block 5)
 
 `Place.catalogType?: string` is an optional semantic taxonomy identifier such as

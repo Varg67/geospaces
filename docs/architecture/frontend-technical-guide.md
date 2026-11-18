@@ -128,5 +128,5 @@ Before serving a snapshot, `validateSnapshot(snapshot)` enforces:
 
 ## 8. Verification Status & Open Frontend Work
 
-- **Blocks 1–5 (parts 1–26)** passed unit (`vitest`), `tsc -b`, `eslint`, production build, Chromium/Playwright, and pinned Firefox (`1575`) checks prior to the spatial network correction (see [docs/frontend-block-5-review.md](../reviews/frontend/frontend-block-5-review.md)).
-- **Pending acceptance:** The [spatial network correction](../plans/spatial-network-correction.md) replaced the linear urban access fixture (`exampleRelations.ts`) with a branching/cyclic mesh and added explicit `proximity` / `Nearby` vs `Access` separation. Re-running the full verification suite and user acceptance review on the updated network remains pending.
+- **Blocks 1–5 (parts 1–26)** passed unit (`vitest`), `tsc -b`, `eslint`, production build, Chromium/Playwright, and pinned Firefox (`1575`) checks before the spatial network correction. See the [Block 5 review](../reviews/frontend/frontend-block-5-review.md).
+- **Pending acceptance:** The [spatial network correction](../plans/spatial-network-correction.md) replaced the linear fixture with a branching access network and added explicit proximity. The [repository review](../reviews/repository-readiness.md) records the current suite results and open findings.

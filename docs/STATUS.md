@@ -63,10 +63,11 @@ Updated: 2026-11-18 (America/Sao_Paulo).
 - The supplied material provides no evidence of authenticated Kindroid integration
   or real Kindroid tests. Static guide/client research is not runtime validation.
 - Engine implementation and Kindroid integration require a later task.
-- Local Git is initialized on `main`. The initial foundation commit uses the
-  GitHub `noreply` address for both author and committer. The repository's local
-  Git configuration uses the same address for future commits. Publication is
-  pending.
+- The foundation commit is on `main`. The local `codex/prepare-github` branch
+  carries the existing observer and repository preparation for review. Commits
+  use the configured GitHub `noreply` address. Publication is pending.
+  See the [repository review](reviews/repository-readiness.md) for the fresh
+  verification and open findings.
 
 ## Sources and pending work
 

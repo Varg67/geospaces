@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 .envrc
+.direnv/
 .netrc
 _netrc
 .npmrc
@@ -28,6 +29,10 @@ secrets/
 /.codex/
 /.claude/settings.local.json
 /.claude/.credentials.json
+/.claude.json
+/.gemini/settings.json
+/.gemini/oauth_creds.json
+/.mcp.local.json
 /.idea/
 /.vscode/
 *.swp

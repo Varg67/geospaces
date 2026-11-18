@@ -88,3 +88,7 @@ limitations below; do not turn intended checks into claims of success.
 Implementation and independent review preparation are in progress. The previous
 checkpoint remains technical evidence for its original fixture, not approval
 of the spatial relationship model identified in this correction.
+
+The [repository preparation review](../reviews/repository-readiness.md)
+records the current automated checks and open reflow finding. User acceptance
+of the corrected spatial network remains pending.

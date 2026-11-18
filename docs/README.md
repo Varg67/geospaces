@@ -6,13 +6,19 @@
 | --- | --- |
 | [Project overview](../README.md) | Purpose, organization, and entry point |
 | [Agent guidance](../AGENTS.md) | Contribution rules |
+| [Contributing](../CONTRIBUTING.md) | Branches, commits, review, and verification |
 | [Claude onboarding](../CLAUDE.md) | Project summary and collaboration rules for Claude |
+| [Gemini onboarding](../GEMINI.md) | Entry point to shared project guidance |
 | [Current status](STATUS.md) | Updatable summary of current work and pending decisions |
+| [Roadmap](ROADMAP.md) | Checkpoints, current work, and proposed milestones |
+| [Changelog](../CHANGELOG.md) | Documented baseline and unreleased changes |
 
 ## Architecture and design
 
 | Document | Role and authority |
 | --- | --- |
+| [Architecture overview](../ARCHITECTURE.md) | Implemented components, observation flow, and proposed engine boundary |
+| [Decision log](DECISIONS.md) | Accepted choices and open questions with links to their evidence |
 | [Frontend technical guide](architecture/frontend-technical-guide.md) | Implemented React/TypeScript/Vite frontend architecture, contracts, and rendering pipeline |
 | [Backend & engine status](architecture/backend-and-engine-status.md) | Engine boundaries, unapproved proposals, Kindroid research status, and open choices |
 | [Design Blueprint](DESIGN.md) | Accepted Warm Glass art direction, evidence, validation, and open visual decisions |
@@ -37,6 +43,11 @@
 | [Frontend Block 3 review](reviews/frontend/frontend-block-3-review.md) | District Network layers, authored geometry, presence, map/list equivalence, checks, and readability limits |
 | [Frontend Block 4 review](reviews/frontend/frontend-block-4-review.md) | Explicit interior exploration, ancestor navigation, per-level camera state, edge cases, and executed checkpoint evidence |
 | [Frontend Block 5 review](reviews/frontend/frontend-block-5-review.md) | Icon integration, accessibility review, cross-browser regression, and final frontend handoff evidence |
+
+## Repository review
+
+[GitHub preparation](reviews/repository-readiness.md) records the initial
+inventory, publication checks, and current technical findings.
 
 ## Research context
 
