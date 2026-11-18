@@ -5,6 +5,10 @@ release entry should include its date, Git tag and verification scope.
 
 ## Unreleased
 
+- Add the `engine/` TypeScript scaffold: kernel primitives, ports with in-memory
+  implementations, staged mechanic modules with the accepted contracts, an
+  architecture boundary test, and a single-file Node 22 bundle with a smoke test.
+
 - Record the accepted Weak engine rules (time policy, travel modes, multi-leg
   journeys, user avatar) and the TypeScript/Node.js engine decision, with
   provisional-place proposals and remaining open items.

@@ -49,6 +49,9 @@ npm test
 npm run build
 ```
 
+For the engine scaffold, run `npx -y npm@11 ci` and `npm run check` from
+`engine/` with Node 22; see the [engine guide](engine/README.md).
+
 See the [frontend guide](frontend/README.md#verify) for Chromium and pinned
 Firefox setup, browser tests and example URLs. The Firefox installer supports
 Debian 13 x64. Native browser zoom, screen-reader behavior and authenticated
@@ -73,6 +76,7 @@ Kindroid behavior remain outside the verified scope.
 | `docs/context/` | Supplied research and its provenance |
 | `docs/plans/` | Original phase plans, implementation plans, and pending sources |
 | `docs/reviews/frontend/` | Frontend review reports and verification evidence |
+| `engine/` | Weak simulation engine scaffold: staged mechanic modules, ports and the Node 22 bundle |
 | `frontend/` | Weak observer, build and test tooling, and fictional fixtures |
 | `icons/` | Temporary English taxonomy and semiotic icon catalog (`urban_places`, `interior_rooms`, and custom SVGs) |
 | `.gitignore` | Exclusions for secrets, caches, temporary files, and local data |

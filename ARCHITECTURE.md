@@ -34,6 +34,12 @@ catalog in `icons/` are build inputs outside the frontend package.
 
 ## Simulation core and adapters
 
+The [`engine/`](engine/README.md) package is the TypeScript core scaffold. It
+separates a kernel (ids, time in seconds, results), ports (clock, random source,
+event log) and one module per mechanic (world, travel, journey, commitments,
+presence) with enforced dependency boundaries and no I/O. It builds into a
+single Node 22 JavaScript bundle. No mechanic is implemented yet.
+
 Weak's [original proposal](docs/plans/01_GeoSpace_Weak.md) describes a persistent
 world and character state, temporal validation, spatial memory and on-demand
 chronological advancement. The proposed flow takes explicit observations or

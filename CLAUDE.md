@@ -27,7 +27,7 @@ These rules come from [AGENTS.md](AGENTS.md) and [README.md](README.md):
   - **Accepted design choices:** **Warm Glass** palette/surfaces ([docs/DESIGN.md](docs/DESIGN.md), [docs/design-tokens.css](docs/design-tokens.css)), **Companion** desktop layout, **District Network** schematic map, and **hierarchical interior exploration** with breadcrumbs and per-level camera memory.
   - **Active work in progress:** During final Block 5 review, the user identified that the initial urban fixture was a sequential circuit and confirmed that **proximity (`Nearby`) and traversable access (`Access`) are separate relationships**. The bounded [spatial network correction](docs/plans/spatial-network-correction.md) is in progress; final user acceptance is pending.
   - **Icon catalog (`icons/`):** 589 spatial taxonomy types (341 urban places, 248 interior rooms) backed by 48 custom Warm Glass SVGs and Lucide icons via a build-time Vite plugin. All 54 files in `icons/` must remain unmodified unless explicitly requested.
-- **Backend / Simulation Engine:** **Not yet implemented.** The engine language is TypeScript on Node.js, and the accepted behavior is in [docs/architecture/engine-weak-rules.md](docs/architecture/engine-weak-rules.md). Database/storage, deployment model, and communication contracts remain open decisions.
+- **Backend / Simulation Engine:** **Only a scaffold exists in [`engine/`](engine/README.md)** (staged mechanic modules with enforced boundaries; no mechanic logic). The engine language is TypeScript on Node.js, and the accepted behavior is in [docs/architecture/engine-weak-rules.md](docs/architecture/engine-weak-rules.md). Database/storage, deployment model, and communication contracts remain open decisions.
 - **Kindroid Integration:** **Not implemented and not runtime-tested.** Only static documentation and `kin.mjs` CLI reading exist in `docs/context/Kindroid_Apps_GeoSpace_Contexto_Codex.md`.
 
 ## 4. Technical Documentation Map
@@ -38,7 +38,7 @@ Read the two dedicated architecture guides created for full technical onboarding
 - **Weak engine rules (accepted and proposed):** [docs/architecture/engine-weak-rules.md](docs/architecture/engine-weak-rules.md)
 - **Canonical document index:** [docs/README.md](docs/README.md)
 
-## 5. Quick Commands (Frontend)
+## 5. Quick Commands
 
 Run from `frontend/` using Node 24 LTS (`.nvmrc`):
 
@@ -49,5 +49,7 @@ npm test
 npm run build
 npm run test:e2e
 ```
+
+For the engine, run from `engine/` with Node 22: `npx -y npm@11 ci`, then `npm run check` (typecheck, lint, test, build, bundle smoke test).
 
 See [frontend/README.md](frontend/README.md) for scenario URL parameters (`?scenario=...`) and the pinned Firefox test binary setup (`npm run browsers:firefox`).

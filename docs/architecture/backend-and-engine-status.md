@@ -2,7 +2,7 @@
 
 This document summarizes the **current state, architectural boundaries, unapproved proposals, and open decisions** for the GeoSpace backend, simulation engine, persistence layer, and Kindroid Apps integration.
 
-> **Critical distinction:** **No backend, simulation engine, database, or Kindroid adapter is implemented in this repository.** Everything in this area exists only as requirements, invariants, accepted rules ([`engine-weak-rules.md`](engine-weak-rules.md)), proposals ([`01_GeoSpace_Weak.md`](../plans/01_GeoSpace_Weak.md)), and static platform research ([`Kindroid_Apps_GeoSpace_Contexto_Codex.md`](../context/Kindroid_Apps_GeoSpace_Contexto_Codex.md)).
+> **Critical distinction:** **No backend, simulation mechanic, database, or Kindroid adapter is implemented in this repository.** The [`engine/`](../../engine/README.md) package contains only a scaffold: module boundaries, shared primitives, ports with in-memory test implementations, and the accepted contracts. Everything in this area exists only as requirements, invariants, accepted rules ([`engine-weak-rules.md`](engine-weak-rules.md)), proposals ([`01_GeoSpace_Weak.md`](../plans/01_GeoSpace_Weak.md)), and static platform research ([`Kindroid_Apps_GeoSpace_Contexto_Codex.md`](../context/Kindroid_Apps_GeoSpace_Contexto_Codex.md)).
 
 ## 1. Architectural Invariants (Accepted Constraints)
 
@@ -18,6 +18,8 @@ This document summarizes the **current state, architectural boundaries, unapprov
 
 The rules are recorded in [engine-weak-rules.md](engine-weak-rules.md) and summarized in the [decision log](../DECISIONS.md).
 - **Engine language & runtime:** TypeScript on Node.js. The Python proposal in `01_GeoSpace_Weak.md` is superseded.
+- **Delivery artifact:** a single dependency-free JavaScript bundle targeting Node 22. Running it on Kindroid is an untested hypothesis.
+- **Engine organization:** one module per mechanic with enforced dependency boundaries, built and tested in stages.
 - **Time policy:** simulated time runs 1:1 with real wall-clock time.
 - **Decision authority:** the LLM chooses among validated options during live conversation; a deterministic autopilot (calendar, plans, routine) decides when no choice is made. Physics (arrivals, waits, co-presence transitions) is always emitted by the engine.
 

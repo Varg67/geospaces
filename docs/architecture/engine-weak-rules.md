@@ -8,8 +8,9 @@ It is the canonical location for engine behavior decisions. The
 > **Evidence status:** Sections marked **Accepted** were explicitly approved by
 > the user in a design review held on 2026-11-17 and 2026-11-18
 > (America/Sao_Paulo). Sections marked **Proposed** await approval. Sections
-> marked **Open** have not been discussed. **Nothing in this document is
-> implemented or verified yet.**
+> marked **Open** have not been discussed. The [engine package](../../engine/README.md)
+> holds only the scaffold and the accepted contracts; **no rule in this document
+> is implemented or verified yet.**
 
 ## 0. Scope and principles — Accepted
 
@@ -21,6 +22,8 @@ It is the canonical location for engine behavior decisions. The
 | The engine stores facts only | A character's *beliefs* live in the LLM. The engine delivers only what is **physically observable** at the moment of observation. |
 | One canonical state, several projections | The frontend `WorldSnapshot` and the LLM context envelope are separate projections of the same canonical state. |
 | Engine stack | **TypeScript on Node.js.** Persistence, deployment and the database remain open. |
+| Delivery artifact | The engine is delivered as a **single JavaScript bundle targeting Node 22** with no runtime dependencies, so it can be supplied as plain JavaScript. Running it on the platform is untested. |
+| Modular mechanics | The engine is split into one module per mechanic with enforced dependency boundaries, so each mechanic can be built and tested in stages. See the [engine package](../../engine/README.md). |
 
 ## 1. Time, asynchronous mode and economy mode — Accepted
 

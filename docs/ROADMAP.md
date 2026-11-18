@@ -21,7 +21,9 @@
 ## Next work
 
 1. Close the remaining [Weak engine rules](architecture/engine-weak-rules.md)
-   (provisional places and items 6–10) and prepare the TypeScript engine package.
+   (provisional places and items 6–10) and implement the
+   [engine](../engine/README.md) mechanics stage by stage, starting with the
+   world graph.
 2. Define engine communication contracts for observation, action requests,
    validation, revisions and repeated requests.
 3. Define local tests for chronological advancement over 24 hours, seven days
