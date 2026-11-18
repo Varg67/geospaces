@@ -7,7 +7,9 @@
 - Preserve pre-existing changes and limit work to the requested scope.
 - Organize code by responsibility as concrete needs arise. The frontend uses the
   approved React/TypeScript/Vite plan in `docs/plans/frontend-implementation.md`.
-  Engine language, database, and platform integration architecture remain open.
+  The engine uses TypeScript on Node.js and follows
+  `docs/architecture/engine-weak-rules.md`. Database, deployment, and platform
+  integration architecture remain open.
 - Keep documentation consistent with effective changes and maintain one canonical
   location per document.
 - Record checks actually performed and their limitations; never imply unexecuted

@@ -47,9 +47,12 @@ adapter would translate between platform messages and core contracts, enforce
 visibility before exposing snapshots, and project confirmed state back to the
 platform. The frontend's visibility rules govern browsing. Engine authority
 and the character's adherence to confirmed state need separate experiments.
-See the [engine and integration status](docs/architecture/backend-and-engine-status.md)
-and the [decision log](docs/DECISIONS.md) for unresolved contracts, storage,
-time and deployment choices.
+The accepted engine behavior is recorded in the
+[Weak engine rules](docs/architecture/engine-weak-rules.md); the engine will be
+written in TypeScript on Node.js. See the
+[engine and integration status](docs/architecture/backend-and-engine-status.md)
+and the [decision log](docs/DECISIONS.md) for unresolved contracts, storage
+and deployment choices.
 
 ## Later phases
 

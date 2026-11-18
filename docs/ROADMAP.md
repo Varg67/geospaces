@@ -20,19 +20,21 @@
 
 ## Next work
 
-1. Define engine communication contracts for observation, action requests,
+1. Close the remaining [Weak engine rules](architecture/engine-weak-rules.md)
+   (provisional places and items 6–10) and prepare the TypeScript engine package.
+2. Define engine communication contracts for observation, action requests,
    validation, revisions and repeated requests.
-2. Define local tests for chronological advancement over 24 hours, seven days
+3. Define local tests for chronological advancement over 24 hours, seven days
    and 30 days, and for checkpoint recovery.
-3. Define minimal Kindroid experiments for state projection, action lookup and
+4. Define minimal Kindroid experiments for state projection, action lookup and
    narrative adherence. Account use and private data require separate
    authorization.
-4. Obtain the original Mid and Strong plan files for import. See the
+5. Obtain the original Mid and Strong plan files for import. See the
    [phase inventory](plans/README.md).
 
 ## Proposals under evaluation
 
 On-demand chronological advancement, persistence, deployment and platform
-communication remain open. Consult the [decision log](DECISIONS.md) and
+communication remain open. The time policy and engine language are accepted. Consult the [decision log](DECISIONS.md) and
 [engine status](architecture/backend-and-engine-status.md) before deriving
 implementation work from a research proposal.

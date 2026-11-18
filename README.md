@@ -14,8 +14,10 @@ camera state. The current checkout includes separate Nearby and Access layers
 as part of the [spatial network correction](docs/plans/spatial-network-correction.md),
 which is pending final user review.
 
-The simulation engine, persistence and Kindroid adapter are future work. Engine
-language, storage and deployment are open, and the supplied Kindroid research
+The simulation engine, persistence and Kindroid adapter are future work. The
+engine will use TypeScript on Node.js and follows the accepted
+[Weak engine rules](docs/architecture/engine-weak-rules.md). Storage and
+deployment are open, and the supplied Kindroid research
 contains no authenticated runtime tests. See [current status](docs/STATUS.md)
 for the 26-part frontend checkpoint history, and [the roadmap](docs/ROADMAP.md)
 for the next steps.

@@ -21,6 +21,7 @@
 | [Decision log](DECISIONS.md) | Accepted choices and open questions with links to their evidence |
 | [Frontend technical guide](architecture/frontend-technical-guide.md) | Implemented React/TypeScript/Vite frontend architecture, contracts, and rendering pipeline |
 | [Backend & engine status](architecture/backend-and-engine-status.md) | Engine boundaries, unapproved proposals, Kindroid research status, and open choices |
+| [Weak engine rules](architecture/engine-weak-rules.md) | Accepted and proposed simulation rules for time, travel modes, journeys, the user avatar, and provisional places |
 | [Design Blueprint](DESIGN.md) | Accepted Warm Glass art direction, evidence, validation, and open visual decisions |
 | [Design tokens](design-tokens.css) | Canonical approved light palette and material values imported by the frontend |
 | [Spatial taxonomy & icon catalog](../icons/README.md) | Temporary English catalog of 341 point-level urban places, 248 interior rooms, standard icon bindings, and 48 custom semiotic SVGs |
@@ -79,5 +80,6 @@ snapshot of mutable sources. Revalidate relevant primary sources before relying
 on them for implementation; this organization task does not refresh that research.
 
 Use `STATUS.md` for current priorities rather than rewriting historical sources.
-Future accepted decisions should be recorded when they exist. Do not infer stack
-approval from Python, SQLite, or other options mentioned in imported proposals.
+Future accepted decisions should be recorded when they exist. The engine language
+(TypeScript on Node.js) is accepted; do not infer storage or deployment approval
+from SQLite or other options mentioned in imported proposals.

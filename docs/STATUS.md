@@ -57,9 +57,13 @@ Updated: 2026-11-18 (America/Sao_Paulo).
   limitations. The application now supports character/place consultation, recent
   events, and asynchronous fictional data states. See the
   [Block 2 report](reviews/frontend/frontend-block-2-review.md).
-- Engine language, database, deployment model, and detailed engine/platform
-  communication contracts remain under discussion. No engine or platform adapter
-  is implemented. Frontend fixtures must remain explicitly fictional.
+- The engine will be written in TypeScript on Node.js. A 2026-11-17/18 design
+  review accepted the Weak engine rules for time, travel modes, multi-leg
+  journeys and the user avatar; provisional places and later topics remain
+  proposed or open. See the [engine rules](architecture/engine-weak-rules.md).
+  Database, deployment model, and detailed engine/platform communication
+  contracts remain under discussion. No engine or platform adapter is
+  implemented. Frontend fixtures must remain explicitly fictional.
 - The supplied material provides no evidence of authenticated Kindroid integration
   or real Kindroid tests. Static guide/client research is not runtime validation.
 - Engine implementation and Kindroid integration require a later task.
@@ -77,9 +81,10 @@ Updated: 2026-11-18 (America/Sao_Paulo).
 - Original Mid and Strong plans were not found in the supplied workspace or the
   searched Documents/Downloads locations. Obtain them before importing; do not
   reconstruct substitutes. See the [plan inventory](plans/README.md).
-- On-demand chronological advancement is a working hypothesis. Time policy,
-  decision authority, simultaneous-event ordering, activity interruptions,
-  checkpoint contents, and recovery remain open.
+- Simulated time runs 1:1 with real time, and the decision authority split is
+  accepted (see the [engine rules](architecture/engine-weak-rules.md)).
+  On-demand chronological advancement remains the execution hypothesis.
+  Simultaneous-event ordering, checkpoint contents, and recovery remain open.
 
 ## Next work
 

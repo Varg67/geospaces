@@ -5,6 +5,10 @@ release entry should include its date, Git tag and verification scope.
 
 ## Unreleased
 
+- Record the accepted Weak engine rules (time policy, travel modes, multi-leg
+  journeys, user avatar) and the TypeScript/Node.js engine decision, with
+  provisional-place proposals and remaining open items.
+
 - Add the local Weak observer and canonical icon catalog. The current snapshot
   includes the Nearby and Access correction pending user review. Checkpoint
   evidence and limits are in [project status](docs/STATUS.md).

@@ -2,7 +2,7 @@
 
 This document summarizes the **current state, architectural boundaries, unapproved proposals, and open decisions** for the GeoSpace backend, simulation engine, persistence layer, and Kindroid Apps integration.
 
-> **Critical distinction:** **No backend, simulation engine, database, or Kindroid adapter is implemented in this repository.** Everything in this area exists only as requirements, invariants, proposals ([`01_GeoSpace_Weak.md`](../plans/01_GeoSpace_Weak.md)), and static platform research ([`Kindroid_Apps_GeoSpace_Contexto_Codex.md`](../context/Kindroid_Apps_GeoSpace_Contexto_Codex.md)).
+> **Critical distinction:** **No backend, simulation engine, database, or Kindroid adapter is implemented in this repository.** Everything in this area exists only as requirements, invariants, accepted rules ([`engine-weak-rules.md`](engine-weak-rules.md)), proposals ([`01_GeoSpace_Weak.md`](../plans/01_GeoSpace_Weak.md)), and static platform research ([`Kindroid_Apps_GeoSpace_Contexto_Codex.md`](../context/Kindroid_Apps_GeoSpace_Contexto_Codex.md)).
 
 ## 1. Architectural Invariants (Accepted Constraints)
 
@@ -12,14 +12,19 @@ This document summarizes the **current state, architectural boundaries, unapprov
 3. **Read-only observation boundary:** The existing frontend expects only a `WorldReader.loadSnapshot(signal?)` contract returning an immutable `WorldSnapshot` (see [frontend-technical-guide.md](frontend-technical-guide.md)). Any future backend must enforce visibility/privacy filtering **before** emitting snapshots to the client.
 4. **Separation of spatial relationships:** Hierarchy (`parentId`), traversable access (`Connection` with `durationMinutes`), and declared nearness (`ProximityKnowledge`) are distinct concepts and must not be conflated.
 
-## 2. Open Architectural Choices (Undecided)
+## 2. Architectural Choices
 
-Per [docs/STATUS.md](../STATUS.md), none of the following have been selected yet:
-- **Engine language & runtime** (Python + in-memory graph was mentioned as an early proposal in `01_GeoSpace_Weak.md`, not an approved stack).
-- **Database / persistence technology** (SQLite or JSON were early prototype suggestions, not approved).
+### 2.1 Accepted (2026-11-18)
+
+The rules are recorded in [engine-weak-rules.md](engine-weak-rules.md) and summarized in the [decision log](../DECISIONS.md).
+- **Engine language & runtime:** TypeScript on Node.js. The Python proposal in `01_GeoSpace_Weak.md` is superseded.
+- **Time policy:** simulated time runs 1:1 with real wall-clock time.
+- **Decision authority:** the LLM chooses among validated options during live conversation; a deterministic autopilot (calendar, plans, routine) decides when no choice is made. Physics (arrivals, waits, co-presence transitions) is always emitted by the engine.
+
+### 2.2 Still open
+
+- **Database / persistence technology** (SQLite or JSON were early prototype suggestions, not approved). The core is expected to depend on an event-log port rather than a specific store.
 - **Deployment model** (local process, container, serverless/Kindroid App container, etc.).
-- **Time policy** (real wall-clock tracking vs. paused vs. accelerated fictional time).
-- **Decision authority** (whether the LLM selects among validated eligible destinations or a heuristic chooses and the LLM narrates).
 - **Communication contracts** (exact wire payloads for queries, proposed actions, validation rejections, state revisions, idempotency keys, and checkpoints).
 
 ## 3. Proposed Simulation Engine Design (Weak Hypothesis)
@@ -27,6 +32,8 @@ Per [docs/STATUS.md](../STATUS.md), none of the following have been selected yet
 From `01_GeoSpace_Weak.md` and `Kindroid_Apps_GeoSpace_Contexto_Codex.md`, the working hypothesis for **GeoSpace Weak** includes:
 
 ### 3.1 World & Character Model
+
+> The single-connection journey below is the original proposal. The accepted model uses multi-leg journeys with travel modes; see [engine rules §3](engine-weak-rules.md#3-multi-leg-journeys--accepted).
 - **World graph:** Hierarchical `Place` nodes (world -> district -> building -> room) plus separate `Connection` edges (origin, destination, direction, modality, minimum/estimated duration, accessibility/opening rules, provenance) and explicit `ProximityRelation` edges.
 - **Canonical character state:** Either at a single `current_place_id` or inside an active `journey` (`depart_at`, `earliest_arrival_at`, `arrived_at`), plus `updated_at`, world timezone, routines/obligations/goals, and visibility levels (public, character-known, private/hidden).
 - **Spatial memory (non-scalar):** Separate dimensions per character-place pair so ambivalence is preserved (e.g., a frequent, familiar, yet unpleasant workplace):
@@ -37,6 +44,8 @@ From `01_GeoSpace_Weak.md` and `Kindroid_Apps_GeoSpace_Contexto_Codex.md`, the w
   - `episodes` (referencable autobiographical events)
 
 ### 3.2 On-Demand Chronological Advancement (Working Hypothesis)
+The time policy (1:1 with real time) is accepted; on-demand advancement remains the hypothesized execution strategy.
+
 Instead of running a continuous minute-by-minute tick loop with constant LLM calls, the preferred hypothesis is **on-demand chronological advancement**:
 - When a message or query arrives after hours of inactivity, the engine advances simulated state from the last `updated_at` checkpoint up to the target timestamp, resolving pending transitions and scheduled events in causal order.
 - **Target causal properties (to verify):**

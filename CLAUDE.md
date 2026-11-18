@@ -7,7 +7,7 @@ Welcome to **GeoSpace**. Multiple AI assistants (Gemini, Codex, and Claude) coll
 GeoSpace explores **persistent spatial, temporal, and behavioral coherence** for LLM-based characters (companions). Instead of letting a character invent locations and travel outcomes on every chat turn, GeoSpace provides a persistent world model where places, connectivity, travel durations, routines, and spatial memory constrain what a character can do and what the simulation records.
 
 The project is planned in three stages, with **GeoSpace Weak** as the current focus:
-- **GeoSpace Weak (current focus):** Abstract place hierarchy and network graphs, travel durations, on-demand time progression hypothesis, spatial memory, and a read-only observation interface.
+- **GeoSpace Weak (current focus):** Abstract place hierarchy and network graphs, travel durations, simulated time running 1:1 with real time (on-demand advancement as the execution hypothesis), spatial memory, and a read-only observation interface.
 - **GeoSpace Mid / Strong (future, original plan files not yet in repo):** Urban/geometric enrichment (Mid) and multi-agent social simulation (Strong).
 
 ## 2. Hard Rules (Must Always Follow)
@@ -27,7 +27,7 @@ These rules come from [AGENTS.md](AGENTS.md) and [README.md](README.md):
   - **Accepted design choices:** **Warm Glass** palette/surfaces ([docs/DESIGN.md](docs/DESIGN.md), [docs/design-tokens.css](docs/design-tokens.css)), **Companion** desktop layout, **District Network** schematic map, and **hierarchical interior exploration** with breadcrumbs and per-level camera memory.
   - **Active work in progress:** During final Block 5 review, the user identified that the initial urban fixture was a sequential circuit and confirmed that **proximity (`Nearby`) and traversable access (`Access`) are separate relationships**. The bounded [spatial network correction](docs/plans/spatial-network-correction.md) is in progress; final user acceptance is pending.
   - **Icon catalog (`icons/`):** 589 spatial taxonomy types (341 urban places, 248 interior rooms) backed by 48 custom Warm Glass SVGs and Lucide icons via a build-time Vite plugin. All 54 files in `icons/` must remain unmodified unless explicitly requested.
-- **Backend / Simulation Engine:** **Not yet implemented.** Engine language, database/storage, deployment model, and communication contracts remain open decisions.
+- **Backend / Simulation Engine:** **Not yet implemented.** The engine language is TypeScript on Node.js, and the accepted behavior is in [docs/architecture/engine-weak-rules.md](docs/architecture/engine-weak-rules.md). Database/storage, deployment model, and communication contracts remain open decisions.
 - **Kindroid Integration:** **Not implemented and not runtime-tested.** Only static documentation and `kin.mjs` CLI reading exist in `docs/context/Kindroid_Apps_GeoSpace_Contexto_Codex.md`.
 
 ## 4. Technical Documentation Map
@@ -35,6 +35,7 @@ These rules come from [AGENTS.md](AGENTS.md) and [README.md](README.md):
 Read the two dedicated architecture guides created for full technical onboarding:
 - **Frontend architecture & implementation:** [docs/architecture/frontend-technical-guide.md](docs/architecture/frontend-technical-guide.md)
 - **Backend, engine & Kindroid integration status:** [docs/architecture/backend-and-engine-status.md](docs/architecture/backend-and-engine-status.md)
+- **Weak engine rules (accepted and proposed):** [docs/architecture/engine-weak-rules.md](docs/architecture/engine-weak-rules.md)
 - **Canonical document index:** [docs/README.md](docs/README.md)
 
 ## 5. Quick Commands (Frontend)
