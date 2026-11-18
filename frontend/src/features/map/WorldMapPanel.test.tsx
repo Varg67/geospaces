@@ -52,9 +52,10 @@ it("changes relationship layers without changing selection, camera or snapshot",
       <WorldMapPanel />
     </WorldViewProvider>,
   );
-  expect(
-    screen.getByRole("button", { name: "Nearby" }),
-  ).toHaveAttribute("aria-pressed", "true");
+  expect(screen.getByRole("button", { name: "Nearby" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
   await user.click(screen.getByRole("button", { name: "Café" }));
   expect(
     container.querySelectorAll('[data-proximity][data-incident="true"]'),
@@ -68,13 +69,15 @@ it("changes relationship layers without changing selection, camera or snapshot",
   expect(
     container.querySelectorAll('[data-connection][data-incident="true"]'),
   ).toHaveLength(3);
+  expect(screen.getByRole("button", { name: "Café" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  // Nearby is a web layout and Access a schematic one, so positions differ
+  // between layers; returning to Nearby must reproduce the same web.
+  await user.click(screen.getByRole("button", { name: "Nearby" }));
   expect(
-    screen.getByRole("button", { name: "Café" }),
-  ).toHaveAttribute("aria-pressed", "true");
-  expect(
-    screen
-      .getByRole("button", { name: "Café" })
-      .getAttribute("style"),
+    screen.getByRole("button", { name: "Café" }).getAttribute("style"),
   ).toBe(position);
   expect(JSON.stringify(snapshot)).toBe(before);
 });
@@ -90,8 +93,9 @@ it("renders transit only on the explicitly requested Access geometry", async () 
   await user.click(
     screen.getByRole("button", { name: "Show recorded journey" }),
   );
-  expect(
-    screen.getByRole("button", { name: "Access" }),
-  ).toHaveAttribute("aria-pressed", "true");
+  expect(screen.getByRole("button", { name: "Access" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
   expect(container.querySelector(".map-presence--journey")).toBeInTheDocument();
 });
