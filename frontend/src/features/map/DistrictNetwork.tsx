@@ -5,6 +5,8 @@ import { CameraControls } from "./CameraControls";
 import { cameraTransform } from "./camera";
 import { usePointerPan } from "./usePointerPan";
 import { fitTransform } from "./geometry";
+import { visibleNearbyRoutes } from "./mapModel";
+import { webPositions } from "./webLayout";
 import { useViewport } from "./useViewport";
 import { RegionLayer } from "./RegionLayer";
 import { RouteLayer } from "./RouteLayer";
@@ -37,6 +39,35 @@ export function DistrictNetwork({ layer }: { layer: NetworkLayer }) {
       }
     : undefined;
   const { ref, size } = useViewport();
+  const character = snapshot.characters.find(
+    (item) => item.id === state.characterId,
+  );
+  const focusId =
+    state.selectedPlaceId ??
+    (character?.location.kind === "place" ? character.location.placeId : null);
+  // Nearby is drawn as a web: topology-driven positions, no territorial polygons.
+  const web =
+    layout && layer === "nearby"
+      ? webPositions(
+          layout.stations,
+          visibleNearbyRoutes(snapshot, layout).map((r) => ({
+            a: r.relation.a,
+            b: r.relation.b,
+          })),
+          layout.bounds,
+        )
+      : null;
+  const shown =
+    layout && web
+      ? {
+          ...layout,
+          regions: [],
+          stations: layout.stations.map((s) => ({
+            ...s,
+            position: web.get(s.placeId) ?? s.position,
+          })),
+        }
+      : layout;
   const transform = layout
     ? cameraTransform(fitTransform(layout.bounds, size), size, state.camera)
     : null;
@@ -65,26 +96,29 @@ export function DistrictNetwork({ layer }: { layer: NetworkLayer }) {
             >
               <RegionLayer
                 snapshot={snapshot}
-                layout={layout}
+                layout={shown!}
                 transform={transform}
               />
               <RouteLayer
                 snapshot={snapshot}
-                layout={layout}
+                layout={shown!}
+                webLayout={web ? shown : undefined}
                 transform={transform}
                 layer={layer}
                 selectedPlaceId={state.selectedPlaceId}
+                focusId={focusId}
               />
             </svg>
             {size.width > 0 ? (
               <>
                 <StationLayer
-                  layout={layout}
+                  layout={shown!}
                   transform={transform}
                   layer={layer}
+                  focusId={focusId}
                 />
                 <PresenceLayer
-                  layout={layout}
+                  layout={shown!}
                   transform={transform}
                   showJourney={layer === "access"}
                 />
