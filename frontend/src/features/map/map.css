@@ -396,7 +396,8 @@
   stroke-width: 3;
   stroke-opacity: 1;
 }
-.map-station--dim {
+/* Dim only the marker; labels keep full text contrast (WCAG AA). */
+.map-station--dim .map-station__dot {
   opacity: 0.45;
 }
 .map-routes path[data-incident="true"] {

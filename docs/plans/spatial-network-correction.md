@@ -55,8 +55,32 @@ establish the intended spatial semantics. Final user acceptance was pending.
 
 This extends only the read-only frontend observation model and fictional data.
 It does not choose engine, database, geospatial coordinates, routing algorithm,
-distance thresholds, automatic graph layout, or Kindroid integration contracts.
+distance thresholds, or Kindroid integration contracts. Automatic layout
+was originally out of scope; see the Nearby web layout amendment below.
 No dependencies, original icon edits, commits, or publication are required.
+
+## Amendment: Nearby web layout
+
+Date: 2026-11-18 (America/Sao_Paulo). The user judged in practice that the
+metro-style drawing suits access but not proximity, and approved drawing the
+Nearby layer as a web (graph). This amends item 4 and the exclusion above for
+the Nearby layer only.
+
+- Nearby node positions come from a deterministic force-directed layout
+  (`frontend/src/features/map/webLayout.ts`), seeded from the authored
+  positions, with linked places attracting and all places repelling. Access
+  keeps the authored metro-style geometry.
+- Nearby links are straight, thin and solid. Without a selection, the
+  observed character's confirmed place is the focus; with one, the selected
+  place is. Non-neighbours are dimmed (marker only, so labels keep AA
+  contrast). District polygons are not drawn in Nearby; places with no
+  recorded neighbours sit in a row along the bottom.
+- Screen distance in Nearby is a layout by-product, not a metric; semantic
+  neighbourhoods remain those declared in the snapshot.
+- The previous rule that a place keeps the same position across layers no
+  longer holds. Returning to Nearby reproduces the same web.
+- The layout runs on each render of the layer (400 iterations); it is only
+  exercised with the 15-place example world.
 
 ## Team and verification
 

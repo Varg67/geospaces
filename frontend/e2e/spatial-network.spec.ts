@@ -54,11 +54,15 @@ test("Café shows its whole declared neighborhood separately from direct access"
   await expect(
     page.locator('[data-connection][data-incident="true"]'),
   ).toHaveCount(3);
+  // Nearby is a web layout and Access a schematic one, so positions differ
+  // between layers; returning to Nearby must reproduce the same web.
+  await page.getByRole("button", { name: "Nearby", exact: true }).click();
   expect(
     await map
       .getByRole("button", { name: "Café", exact: true })
       .getAttribute("style"),
   ).toBe(camera);
+  await page.getByRole("button", { name: "Access", exact: true }).click();
   await expect(page.getByTestId("confirmed-location")).toHaveText("Café");
   await map.getByRole("button", { name: "Home", exact: true }).click();
   await expect(
