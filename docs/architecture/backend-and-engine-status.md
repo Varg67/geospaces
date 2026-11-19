@@ -48,6 +48,37 @@ Instead of running a continuous minute-by-minute tick loop with constant LLM cal
 ### 3.3 Proposed Core Regression Scenarios (`W01–W10` in `01_GeoSpace_Weak.md`)
 Before expanding to Mid/Strong, the original plan proposes testing 10 baseline behaviors (such as closed bakery at 02:00 `W01`, mid-transit at 14:20 of a 40-min trip `W02`, repeated user mentions not inflating `visits` `W03`, LLM claiming impossible location `W06`, 9-hour inactivity catch-up `W07`, shared topology with separate character memories `W08`, unknown access/hours `W09`, and idempotent event reprocessing `W10`).
 
+### 3.4 Proposed Interaction Cycle and Sleep (Proposal, User-Discussed, Not Accepted)
+Status: proposal from the 2026-11-19 design discussion. Nothing here is implemented or verified, and it is not recorded in [DECISIONS.md](../DECISIONS.md). The goal is character agency: the companion behaves as a simulated life, not as an avatar the user steers.
+
+**Cycle (character awake).** At a periodic interval (about 30 minutes, with random jitter) the engine asks the character where it is and what it wants to do. The request carries the validated current place and the places reachable from it with travel times from the graph. The character replies `go` (with a destination), or `stay`, plus a short activity. The engine validates the destination against the graph, records the departure or the unchanged state, and computes the arrival. An invalid destination leaves the character where it is. While a journey is in progress the engine reports "in transit" with the remaining time and offers no new destinations. The engine knows only "character" and "decision"; the delivery channel (for example Kindroid) lives in a replaceable adapter.
+
+Illustrative request (shape not final):
+```json
+{
+  "character": "Isa",
+  "now": "2026-11-19T14:10:00",
+  "current": { "place": "Pharmacy", "activity": "buying medicine" },
+  "options": [
+    { "place": "Bakery", "travel": "7 min", "mode": "walk" },
+    { "place": "Isa's home", "travel": "30 min", "mode": "walk" },
+    { "place": "Hospital", "travel": "15 min", "mode": "bus" }
+  ],
+  "instruction": "Reply with a destination to go, or stay and update your current activity."
+}
+```
+Illustrative replies: `{ "decision": "go", "destination": "Bakery", "activity": "going to buy bread" }` or `{ "decision": "stay", "activity": "talking to the pharmacist" }`.
+
+**Sleep as a pause state.**
+- The character declares it is going to sleep. The engine pauses the periodic cycle and stores an absolute `wake_at`, drawn at random from about 6 to 8 hours and possibly shaped by when sleep began. The engine owns the clock; the character does not choose the wake time.
+- At `wake_at` the engine resumes the cycle and first asks for a short summary of the last dream. The dream is stored as narrative memory only. It does not change the world state or the character position.
+- Sleep is allowed only at places typed as sleepable (for example bedroom, bed, hotel). The graph validates this. Short naps in other places (15 to 30 minutes) do not trigger the dream prompt.
+- The engine supplies only the time of day when the character decides to sleep. It deliberately does not report how long the character has been awake, because that would pressure the character to rush to bed.
+- User messages during sleep: during the night, the message waits and the character answers on waking. Outside normal sleep hours, or if the user insists, the engine may wake the character early and the character answers groggy.
+- The same pause mechanism may later serve other long activities (a long meeting, a work shift).
+
+**Open questions for this proposal.** Whether the engine or the adapter schedules the periodic asks. What "no response" means when the character does not answer (the working assumption is that it stays where it is). The exact thresholds for waking the character early. Whether wake time depends on bedtime. Whether the cycle is subject to the open decisions on authority and contracts in section 2 and DECISIONS.md.
+
 ## 4. Kindroid Apps Integration Surface (Research Only)
 
 `docs/context/Kindroid_Apps_GeoSpace_Contexto_Codex.md` records a static inspection (dated 2026-11-16) of Kindroid's public `GUIDE.md` and `kin.mjs` CLI. **No authenticated calls or runtime tests have been executed.** Treat every item below according to its evidence category:
